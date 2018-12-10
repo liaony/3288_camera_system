@@ -1,0 +1,43 @@
+commit 0f93ae6887547c3c66e8d04069b79324ec23c112
+Author: luorf <luorf@telpo.net>
+Date:   Mon Apr 17 19:40:25 2017 +0800
+
+    修改镜像问题并让其有切换按键
+
+diff --git a/Config/cam_board_rk3288.xml b/Config/cam_board_rk3288.xml
+index 3f7624d..6a93781 100755
+--- a/Config/cam_board_rk3288.xml
++++ b/Config/cam_board_rk3288.xml
+@@ -19,7 +19,7 @@
+ 					<SensorGpioPwdn ioname="RK30_PIN2_PB6" active="0"></SensorGpioPwdn>
+ 					<SensorGpioRst ioname="RK30_PIN2_PB7" active="0"></SensorGpioRst>
+ 					<SensorGpioPwen ioname="RK30_PIN2_PB1" active="1"></SensorGpioPwen>
+-					<SensorFacing facing="back"></SensorFacing>
++					<SensorFacing facing="front"></SensorFacing>
+ 					<SensorInterface interface="MIPI"></SensorInterface>
+ 					<SensorMirrorFlip mirror="0"></SensorMirrorFlip>
+ 					<SensorOrientation orientation="0"></SensorOrientation>
+diff --git a/SiliconImage/isi/drv/OV5648/source/OV5648_tables.c b/SiliconImage/isi/drv/OV5648/source/OV5648_tables.c
+index a524cfd..3b060e1 100755
+--- a/SiliconImage/isi/drv/OV5648/source/OV5648_tables.c
++++ b/SiliconImage/isi/drv/OV5648/source/OV5648_tables.c
+@@ -606,7 +606,7 @@ const IsiRegDescription_t Sensor_g_twolane_resolution_1296_972[] =
+ 	{0x3814, 0x31,"0x0100",eReadWrite}, // x inc
+ 	{0x3815, 0x31,"0x0100",eReadWrite}, // y inc
+ 	{0x3817, 0x00,"0x0100",eReadWrite}, // hsync start
+-	{0x3820, 0x08,"0x0100",eReadWrite}, // flip off, v bin off
++	{0x3820, 0x0e,"0x0100",eReadWrite}, // flip off, v bin off
+ 	{0x3821, 0x07,"0x0100",eReadWrite}, // mirror on, h bin on
+ 	{0x4004, 0x02,"0x0100",eReadWrite}, // black line number
+ 	{0x4005, 0x18,"0x0100",eReadWrite}, // blc level trigger
+@@ -649,8 +649,8 @@ const IsiRegDescription_t Sensor_g_twolane_resolution_2592_1944[] =
+ 	{0x3814, 0x11,"0x0100",eReadWrite}, // x inc
+ 	{0x3815, 0x11,"0x0100",eReadWrite}, // y inc
+ 	{0x3817, 0x00,"0x0100",eReadWrite}, // hsync start
+-	{0x3820, 0x40,"0x0100",eReadWrite}, // flip off, v bin off
+-	{0x3821, 0x06,"0x0100",eReadWrite}, // mirror on, v bin off
++	{0x3820, 0x46,"0x0100",eReadWrite}, // flip off, v bin off
++	{0x3821, 0x00,"0x0100",eReadWrite}, // mirror on, v bin off
+ 	{0x4004, 0x04,"0x0100",eReadWrite}, // black line number
+ 	{0x4005, 0x1a,"0x0100",eReadWrite}, // blc always update
+ 	//{0x350b, 0x40,"0x0100",eReadWrite}, // gain = 4x
